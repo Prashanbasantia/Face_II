@@ -1,0 +1,6 @@
+Label mapping for face_model_multi.
+
+1. Ashutosh
+2. Shamaun
+3. Taras
+4. Uma

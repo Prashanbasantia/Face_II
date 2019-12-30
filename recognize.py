@@ -10,13 +10,14 @@ import numpy as np
 from keras.models import load_model
 
 classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-model = load_model('face_model_0999.h5')
-URL = "http://56.108.111.245:8080/shot.jpg"
+model = load_model('face_model_multi.h5')
+URL = "http://192.168.43.1:8080/shot.jpg"
 
 
 def get_pred_label(pred):
-    labels = ['shamaun',
-              'unknown',
+    labels = ['ashutosh',
+              'shamaun',
+              'taras',
               'uma']
     return labels[pred]
 
@@ -38,14 +39,13 @@ while ret:
     faces = classifier.detectMultiScale(frame,1.3,5)
     
     for x,y,w,h in faces:
-        face = frame[y:y+h+10,x:x+h+10]
+        face = frame[y:y+h,x:x+h]
         cv2.rectangle(frame,(x,y),
-                      (x+w,y+h),(255,255,255),5)
+                      (x+w,y+h),(0,255,0),5)
         cv2.putText(frame,get_pred_label(model.predict_classes(preprocess(face))[0]),(x,y),
-                                         cv2.FONT_HERSHEY_SIMPLEX,2,(255,255,255),2)
+                                         cv2.FONT_HERSHEY_SIMPLEX,2,(0,255,0),2)
     cv2.imshow('video',frame)
         
     if cv2.waitKey(1)==ord('q'):
         break
 cv2.destroyAllWindows()
-
