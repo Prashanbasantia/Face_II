@@ -11,13 +11,13 @@ from keras.models import load_model
 
 classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 model = load_model('face_model_multi.h5')
-URL = "http://192.168.43.1:8080/shot.jpg"
+URL = "http://56.89.230.242:8080/shot.jpg"
 
 
 def get_pred_label(pred):
-    labels = ['ashutosh',
-              'shamaun',
-              'taras',
+    labels = ['Ashutosh',
+              'Shamaun',
+              'Taras',
               'uma']
     return labels[pred]
 
@@ -39,7 +39,7 @@ while ret:
     faces = classifier.detectMultiScale(frame,1.3,5)
     
     for x,y,w,h in faces:
-        face = frame[y:y+h,x:x+h]
+        face = frame[y:y+h+10,x:x+h+10]
         cv2.rectangle(frame,(x,y),
                       (x+w,y+h),(0,255,0),5)
         cv2.putText(frame,get_pred_label(model.predict_classes(preprocess(face))[0]),(x,y),
@@ -49,3 +49,10 @@ while ret:
     if cv2.waitKey(1)==ord('q'):
         break
 cv2.destroyAllWindows()
+
+
+import matplotlib.pyplot as plt
+plt.imshow(face)
+plt.show()
+
+
