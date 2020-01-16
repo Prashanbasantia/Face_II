@@ -28,7 +28,8 @@ for i in files:
 x_train = np.array(x_train)
 y_train = np.array(y_train)
 
-with open('images.p','wb') as f:
+with open(r'consolidated\images.p','wb') as f:
     pickle.dump(x_train,f)
-with open('labels.p','wb') as f:
+with open(r'consolidated\labels.p','wb') as f:
     pickle.dump(y_train,f)
+

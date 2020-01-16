@@ -11,7 +11,7 @@ from keras.models import load_model
 
 classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 model = load_model('face_model_multi.h5')
-URL = "http://56.89.230.242:8080/shot.jpg"
+URL = "http://25.38.153.116:8080/shot.jpg"
 
 
 def get_pred_label(pred):
@@ -50,9 +50,5 @@ while ret:
         break
 cv2.destroyAllWindows()
 
-
-import matplotlib.pyplot as plt
-plt.imshow(face)
-plt.show()
 
 
